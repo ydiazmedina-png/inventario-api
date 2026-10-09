@@ -1,0 +1,6 @@
+# Apache: envía /api/* a index.php y conserva la cabecera Authorization.
+RewriteEngine On
+RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+
+RewriteCond %{REQUEST_URI} ^/api
+RewriteRule ^ index.php [L]

@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Inventario · Cliente de la API</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Pantalla de acceso -->
+  <main id="vista-acceso" class="card acceso">
+    <h1>Inventario</h1>
+    <p class="muted">Cliente de ejemplo que consume la API REST.</p>
+    <p id="acceso-error" class="alert" hidden></p>
+    <form id="form-acceso">
+      <label id="campo-nombre" hidden>Nombre
+        <input type="text" id="acceso-nombre" maxlength="80">
+      </label>
+      <label>Correo
+        <input type="email" id="acceso-email" required>
+      </label>
+      <label>Contraseña
+        <input type="password" id="acceso-password" minlength="8" required>
+      </label>
+      <button type="submit" id="acceso-enviar">Entrar</button>
+    </form>
+    <p class="muted"><a href="#" id="alternar-modo">¿No tienes cuenta? Regístrate</a></p>
+  </main>
+
+  <!-- Aplicación -->
+  <main id="vista-app" class="card app" hidden>
+    <header class="topbar">
+      <h1>Inventario</h1>
+      <button type="button" id="btn-salir" class="ghost">Cerrar sesión</button>
+    </header>
+
+    <section class="resumen" id="resumen" aria-label="Resumen del inventario"></section>
+
+    <div class="barra">
+      <input type="search" id="buscar" placeholder="Buscar por nombre o SKU…">
+      <button type="button" id="btn-nuevo">Nuevo producto</button>
+    </div>
+
+    <p id="mensaje" class="alert" hidden></p>
+
+    <div class="tabla-wrap">
+      <table>
+        <thead>
+          <tr><th>SKU</th><th>Nombre</th><th>Categoría</th><th class="num">Precio</th><th class="num">Stock</th><th></th></tr>
+        </thead>
+        <tbody id="tabla"></tbody>
+      </table>
+    </div>
+    <p id="vacio" class="muted" hidden>No hay productos que mostrar.</p>
+
+    <nav class="paginacion">
+      <button type="button" id="btn-anterior" class="ghost">← Anterior</button>
+      <span id="pagina-info"></span>
+      <button type="button" id="btn-siguiente" class="ghost">Siguiente →</button>
+    </nav>
+  </main>
+
+  <dialog id="dialogo">
+    <form id="form-producto" method="dialog">
+      <h2 id="dialogo-titulo">Nuevo producto</h2>
+      <p id="dialogo-error" class="alert" hidden></p>
+      <label>Nombre <input type="text" id="p-nombre" maxlength="120" required></label>
+      <label>SKU <input type="text" id="p-sku" maxlength="40" required></label>
+      <label>Categoría <input type="text" id="p-categoria" maxlength="60"></label>
+      <div class="dos">
+        <label>Precio <input type="number" id="p-precio" min="0" step="0.01" value="0" required></label>
+        <label>Stock <input type="number" id="p-stock" min="0" step="1" value="0" required></label>
+      </div>
+      <div class="acciones">
+        <button type="button" id="p-cancelar" class="ghost">Cancelar</button>
+        <button type="submit">Guardar</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="app.js"></script>
+</body>
+</html>
